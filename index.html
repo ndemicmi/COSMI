@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>COSMI — ITASEC 2027 Workshop</title>
+<meta name="description" content="COSMI — Collaborative intelligence and Security in Major-risk Infrastructures. Half-day workshop at ITASEC 2027, Siena, 8 February 2027.">
+<meta property="og:title" content="COSMI — ITASEC 2027 Workshop">
+<meta property="og:description" content="Collaborative intelligence and Security in Major-risk Infrastructures. Siena, 8 February 2027.">
+<meta property="og:type" content="website">
+<style>
+:root{
+  --field:#E6E7E4; --panel:#F2F3F0; --ink:#1F2328; --ink-2:#5A6069;
+  --rule:#C3C6C1; --abnormal:#A32A18; --link:#27565F;
+  --sans:"Segoe UI Variable Text","Segoe UI",system-ui,-apple-system,"Helvetica Neue",Arial,sans-serif;
+  --serif:"Iowan Old Style","Palatino Linotype",Palatino,"Book Antiqua",Georgia,serif;
+  --gutter:clamp(16px,5vw,64px);
+}
+@media (prefers-color-scheme:dark){
+  :root{
+    --field:#16181A; --panel:#1D2023; --ink:#E6E7E4; --ink-2:#9BA2A8;
+    --rule:#343A3F; --abnormal:#E2694F; --link:#7FB7BE;
+  }
+}
+*{box-sizing:border-box}
+html{-webkit-text-size-adjust:100%}
+body{
+  margin:0; background:var(--field); color:var(--ink);
+  font-family:var(--serif); font-size:17px; line-height:1.65;
+}
+.wrap{max-width:1180px; margin:0 auto; padding:0 var(--gutter)}
+h1,h2,h3,.sans{font-family:var(--sans)}
+a{color:var(--link)}
+a:focus-visible,button:focus-visible{outline:2px solid var(--link); outline-offset:3px}
+
+/* ---- masthead ---- */
+.mast{display:flex; align-items:baseline; justify-content:space-between; gap:16px;
+  padding:22px 0 20px; border-bottom:1px solid var(--rule)}
+.mark{font-family:var(--sans); font-weight:700; font-size:19px; letter-spacing:.14em; margin:0}
+.langs{display:flex; gap:2px; font-family:var(--sans); font-size:13px}
+.langs button{
+  background:none; border:1px solid transparent; color:var(--ink-2);
+  padding:4px 9px; cursor:pointer; font:inherit; border-radius:2px;
+}
+.langs button[aria-pressed="true"]{color:var(--ink); border-color:var(--rule); background:var(--panel)}
+
+/* ---- hero ---- */
+.hero{padding:clamp(40px,7vw,86px) 0 0}
+.hero h1{
+  font-size:clamp(56px,13vw,148px); line-height:.86; letter-spacing:-.035em;
+  font-weight:700; margin:0;
+}
+.expand{
+  font-family:var(--serif); font-size:clamp(19px,2.5vw,28px); line-height:1.3;
+  margin:18px 0 0; max-width:22ch; color:var(--ink);
+}
+.facts{
+  font-family:var(--sans); font-size:15px; color:var(--ink-2);
+  margin:26px 0 0; padding:0; list-style:none;
+  display:flex; flex-wrap:wrap; gap:4px 26px;
+}
+.facts strong{color:var(--ink); font-weight:600}
+.facts a{
+  color:var(--ink); font-weight:600; text-decoration:underline;
+  text-decoration-color:var(--rule); text-decoration-thickness:1px; text-underline-offset:4px;
+}
+.facts a:hover,.facts a:focus-visible{text-decoration-color:var(--link); color:var(--link)}
+
+/* ---- parent conference banner ---- */
+.conf{margin:0; padding:20px 0 0; max-width:620px}
+.conf a{display:block; line-height:0; border:1px solid var(--rule); border-radius:2px; overflow:hidden}
+.conf img{width:100%; height:auto; display:block}
+@media (prefers-color-scheme:dark){ .conf a{border-color:#2A2F34} }
+
+/* ---- sections ---- */
+section{padding:clamp(48px,8vw,96px) 0 0}
+h2{
+  font-size:14px; font-weight:600; letter-spacing:.13em; text-transform:uppercase;
+  color:var(--ink-2); margin:0 0 28px; padding-bottom:10px; border-bottom:1px solid var(--rule);
+}
+.prose{max-width:66ch}
+.prose p{margin:0 0 1.15em}
+.lead{font-size:clamp(20px,2.3vw,25px); line-height:1.45}
+
+/* ---- programme ---- */
+.sched{width:100%; border-collapse:collapse; margin:0; font-size:16px}
+.sched th{
+  font-family:var(--sans); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-2); font-weight:600; text-align:left; padding:0 14px 10px 0;
+  border-bottom:1px solid var(--rule);
+}
+.sched td{padding:16px 14px 16px 0; border-bottom:1px solid var(--rule); vertical-align:top}
+.sched tr:last-child td{border-bottom:0}
+.dur{
+  font-family:var(--sans); font-variant-numeric:tabular-nums; font-weight:600;
+  white-space:nowrap; width:5.5em; color:var(--ink)
+}
+.who{font-family:var(--sans); font-size:15px; width:15em; color:var(--ink)}
+.what{color:var(--ink-2)}
+.what b{color:var(--ink); font-weight:600; font-family:var(--sans); font-size:15.5px}
+tr.pause .dur,tr.pause .who,tr.pause .what{color:var(--ink-2); font-style:italic}
+
+/* ---- people ---- */
+.people{display:grid; grid-template-columns:repeat(auto-fit,minmax(230px,1fr)); gap:26px 34px; margin:0}
+.person{margin:0}
+.person .nm{font-family:var(--sans); font-weight:600; font-size:16px; display:block}
+.person .af{font-size:15px; color:var(--ink-2)}
+.role{
+  font-family:var(--sans); font-size:12px; letter-spacing:.1em; text-transform:uppercase;
+  color:var(--ink-2); margin:0 0 14px;
+}
+.tpc{margin:0; padding:0; list-style:none; columns:2; column-gap:34px; font-size:16px}
+.tpc li{break-inside:avoid; margin:0 0 7px}
+.tpc .af{color:var(--ink-2); font-size:15px}
+
+/* unresolved state — the only use of the alarm colour */
+.tbc{
+  font-family:var(--sans); font-size:11.5px; letter-spacing:.08em; text-transform:uppercase;
+  color:var(--abnormal); border:1px solid currentColor; border-radius:2px;
+  padding:1px 5px; margin-left:7px; white-space:nowrap; display:inline-block;
+  vertical-align:1px; font-weight:600;
+}
+
+/* ---- attend ---- */
+.cols{display:grid; grid-template-columns:repeat(auto-fit,minmax(260px,1fr)); gap:30px 40px}
+.cols h3{font-size:16px; font-weight:600; margin:0 0 8px}
+.cols p{margin:0; color:var(--ink-2); font-size:16px}
+.cta{
+  display:inline-block; margin:28px 0 0; font-family:var(--sans); font-weight:600; font-size:16px;
+  background:var(--ink); color:var(--field); text-decoration:none;
+  padding:13px 24px; border-radius:2px;
+}
+.cta[aria-disabled="true"]{background:none; color:var(--ink-2); border:1px dashed var(--rule); cursor:default}
+
+/* ---- footer ---- */
+footer{margin-top:clamp(56px,9vw,104px); border-top:1px solid var(--rule); padding:26px 0 56px;
+  font-family:var(--sans); font-size:14.5px; color:var(--ink-2)}
+footer p{margin:0 0 6px}
+@media (max-width:620px){
+  .sched .who{display:none}
+  .sched td,.sched th{padding-right:10px}
+  .tpc{columns:1}
+}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<figure class="conf">
+  <a href="https://itasec.it/"><img src="itasec27.jpg" width="1262" height="713" alt="ITASEC & SERICS, Joint National Conference on Cybersecurity. February 8–12, 2027, Siena."></a>
+</figure>
+
+<div class="mast">
+  <p class="mark">COSMI</p>
+  <div class="langs" role="group" aria-label="Language">
+    <button type="button" data-lang="en" aria-pressed="true">English</button>
+    <button type="button" data-lang="it" aria-pressed="false">Italiano</button>
+  </div>
+</div>
+
+<header class="hero">
+  <h1>COSMI</h1>
+  <p class="expand" data-i18n="expand">Collaborative intelligence and Security in Major-risk Infrastructures</p>
+  <ul class="facts">
+    <li data-i18n="f1">Half-day workshop at <a href="https://itasec.it/">ITASEC 2027</a></li>
+    <li data-i18n="f2">Siena, <strong>8 February 2027</strong></li>
+    <li data-i18n="f3">Santa Maria della Scala</li>
+  </ul>
+</header>
+
+<section id="about">
+  <h2 data-i18n="h-about">The workshop</h2>
+  <div class="prose">
+    <p class="lead" data-i18n="a1">In an upper-tier Seveso establishment, an attack on the basic process control system or on the safety instrumented system does not stay in the digital domain. It reaches the physical process, and it can end in loss of containment, fire, explosion, damaged equipment and injured people.</p>
+    <p data-i18n="a2">From the control room, that attack is not observable as an attack. It appears as a deviation in process variables, at first indistinguishable from a fault or a drift, to be diagnosed under time pressure and on instrumentation that may itself be compromised. The operator is often the last barrier once the automated protections have been reached, and is rarely fully part of either the safety picture or the security one.</p>
+    <p data-i18n="a3">Collaborative intelligence systems act in two opposite directions. They extend the capacity to detect, and they enlarge the attack surface. By moving part of the decision away from the operator they also change what can be reconstructed after the event — and the attribution of responsibility depends on that reconstruction.</p>
+    <p data-i18n="a4">COSMI brings together process and machine safety, reliability and human factors on one side, and industrial cybersecurity on the other, with the inspection authority in the room. It is a half-day of invited talks and a closing panel: there is no call for papers and no proceedings volume.</p>
+  </div>
+</section>
+
+<section id="programme">
+  <h2 data-i18n="h-prog">Programme</h2>
+  <table class="sched">
+    <thead>
+      <tr>
+        <th data-i18n="th-dur">Duration</th>
+        <th class="who" data-i18n="th-who">Who</th>
+        <th data-i18n="th-what">Session</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td class="dur">10′</td>
+        <td class="who" data-i18n="p1w">The chairs</td>
+        <td class="what"><b data-i18n="p1t">Opening</b></td>
+      </tr>
+      <tr>
+        <td class="dur">15′</td>
+        <td class="who">Romualdo Marrazzo<br><span class="af">ISPRA</span></td>
+        <td class="what"><b data-i18n="p2t">Framing talk</b><br><span data-i18n="p2d">Regulatory duties, and what an operator must be able to demonstrate</span><span class="tbc" data-i18n="tbc-title">title to be confirmed</span></td>
+      </tr>
+      <tr>
+        <td class="dur">40′</td>
+        <td class="who">Politecnico di Torino</td>
+        <td class="what"><b>Collaborative intelligence in the control room</b><br><span data-i18n="p3d">Two talks of 20 minutes</span><span class="tbc" data-i18n="tbc-sp">speakers to be confirmed</span></td>
+      </tr>
+      <tr>
+        <td class="dur">40′</td>
+        <td class="who">Università di Bologna</td>
+        <td class="what"><b>Cyber-physical security risk assessment in process and energy facilities</b><br><span data-i18n="p4d">Two talks of 20 minutes</span><span class="tbc" data-i18n="tbc-sp2">speakers to be confirmed</span></td>
+      </tr>
+      <tr class="pause">
+        <td class="dur">20′</td>
+        <td class="who"></td>
+        <td class="what" data-i18n="p5t">Coffee break</td>
+      </tr>
+      <tr>
+        <td class="dur">40′</td>
+        <td class="who">Università Campus Bio-Medico di Roma</td>
+        <td class="what"><b>Emergent risks in industrial cyber-physical systems</b><br><span class="af">Tomaso Vairo</span><span class="tbc" data-i18n="tbc-af">affiliation to be confirmed</span><br><b>Cyber-physical attacks on industrial infrastructures</b><br><span class="af">Simone Guarino</span></td>
+      </tr>
+      <tr>
+        <td class="dur">30′</td>
+        <td class="who">Cozzani, Setola, Marrazzo</td>
+        <td class="what"><b data-i18n="p7t">Closing panel</b><br><span data-i18n="p7d">What a collaborative intelligence system has to demonstrate before it is allowed into the control room of a major-hazard plant</span></td>
+      </tr>
+    </tbody>
+  </table>
+</section>
+
+<section id="organisers">
+  <h2 data-i18n="h-org">Organisers</h2>
+  <p class="role" data-i18n="r-chairs">Chairs</p>
+  <div class="people">
+    <p class="person"><span class="nm">Micaela Demichela</span><span class="af">Politecnico di Torino, DISAT</span></p>
+    <p class="person"><span class="nm">Valerio Cozzani</span><span class="af">Università di Bologna</span><span class="tbc" data-i18n="tbc-c">to be confirmed</span></p>
+    <p class="person"><span class="nm">Roberto Setola</span><span class="af">Università Campus Bio-Medico di Roma</span></p>
+  </div>
+
+  <p class="role" style="margin-top:38px" data-i18n="r-tpc">Technical programme committee</p>
+  <ul class="tpc">
+    <li>Alessandro Tugnoli <span class="af">— Università di Bologna</span></li>
+    <li>Matteo Iaiani <span class="af">— Università di Bologna</span></li>
+    <li>Simone Guarino <span class="af">— Campus Bio-Medico</span></li>
+    <li>Romualdo Marrazzo <span class="af">— ISPRA</span><span class="tbc" data-i18n="tbc-c2">to be confirmed</span></li>
+    <li data-i18n="tpc-x1">One further member, Campus Bio-Medico<span class="tbc" data-i18n="tbc-n">name to be added</span></li>
+    <li data-i18n="tpc-x2">Two further members, Politecnico di Torino<span class="tbc" data-i18n="tbc-n2">names to be added</span></li>
+  </ul>
+</section>
+
+<section id="attend">
+  <h2 data-i18n="h-attend">Attending</h2>
+  <div class="cols">
+    <div>
+      <h3 data-i18n="at1h">Registration</h3>
+      <p data-i18n="at1p">COSMI is part of ITASEC 2027 and is open to everyone registered for the conference.</p>
+    </div>
+    <div>
+      <h3 data-i18n="at2h">In person</h3>
+      <p data-i18n="at2p">Santa Maria della Scala, Siena, on Monday 8 February 2027. The starting time within the day is set by the conference programme.</p>
+    </div>
+    <div>
+      <h3 data-i18n="at3h">After the workshop</h3>
+      <p data-i18n="at3p">The speakers’ slides are published on this page.</p>
+    </div>
+  </div>
+  <a class="cta" href="#" aria-disabled="true" data-i18n="cta">Registration link to be added</a>
+</section>
+
+<footer>
+  <p data-i18n="fo1">COSMI is a workshop of <a href="https://itasec.it/">ITASEC 2027</a>, the Italian Conference on Cybersecurity, organised by the CINI Cybersecurity National Lab with the SERICS Foundation.</p>
+  <p data-i18n="fo2">Contact: <a href="mailto:micaela.demichela@polito.it">micaela.demichela@polito.it</a></p>
+  <p data-i18n="fo3">Politecnico di Torino · Università di Bologna · Università Campus Bio-Medico di Roma</p>
+</footer>
+
+</div>
+
+<script>
+(function(){
+  var IT = {
+    "expand":"Intelligenza collaborativa e sicurezza nelle infrastrutture a rischio rilevante",
+    "f1":"Workshop di mezza giornata a <a href=\"https://itasec.it/\">ITASEC 2027</a>",
+    "f2":"Siena, <strong>8 febbraio 2027</strong>",
+    "f3":"Santa Maria della Scala",
+    "h-about":"Il workshop",
+    "a1":"In uno stabilimento Seveso di soglia superiore, un attacco al sistema di controllo di processo o al sistema strumentato di sicurezza non resta nel dominio digitale. Arriva al processo fisico, e può finire in perdita di contenimento, incendio, esplosione, danni agli impianti e persone ferite.",
+    "a2":"Dalla sala controllo quell’attacco non è osservabile come attacco. Si manifesta come deviazione di variabili di processo, all’inizio indistinguibile da un guasto o da un drift, da diagnosticare sotto vincolo di tempo e su strumentazione che può essere a sua volta compromessa. L’operatore è spesso l’ultima barriera quando le protezioni automatiche sono state raggiunte, ed è raramente parte piena né del quadro di safety né di quello di security.",
+    "a3":"I sistemi di intelligenza collaborativa agiscono in due direzioni opposte. Estendono la capacità di rilevazione e allargano la superficie di attacco. Spostando parte della decisione fuori dall’operatore cambiano anche ciò che si può ricostruire dopo l’evento — e da quella ricostruzione dipende l’attribuzione di responsabilità.",
+    "a4":"COSMI mette nella stessa stanza la sicurezza di processo e di macchina, l’affidabilità e i fattori umani da un lato, la cybersecurity industriale dall’altro, con l’autorità di controllo presente. È mezza giornata di interventi su invito e un panel di chiusura: non c’è call for papers e non ci sono atti.",
+    "h-prog":"Programma",
+    "th-dur":"Durata","th-who":"Chi","th-what":"Sessione",
+    "p1w":"I chair","p1t":"Apertura",
+    "p2t":"Intervento di inquadramento",
+    "p2d":"Doveri regolatori e cosa il gestore deve poter dimostrare",
+    "p3d":"Due interventi da 20 minuti",
+    "p4d":"Due interventi da 20 minuti",
+    "p5t":"Pausa caffè",
+    "p7t":"Panel di chiusura",
+    "p7d":"Cosa deve dimostrare un sistema di intelligenza collaborativa prima di essere ammesso in una sala controllo a rischio di incidente rilevante",
+    "h-org":"Chi organizza",
+    "r-chairs":"Chair","r-tpc":"Comitato tecnico di programma",
+    "tpc-x1":"Un altro membro, Campus Bio-Medico",
+    "tpc-x2":"Altri due membri, Politecnico di Torino",
+    "h-attend":"Partecipare",
+    "at1h":"Iscrizione",
+    "at1p":"COSMI fa parte di ITASEC 2027 ed è aperto a chi è iscritto alla conferenza.",
+    "at2h":"In presenza",
+    "at2p":"Santa Maria della Scala, Siena, lunedì 8 febbraio 2027. L’orario all’interno della giornata lo fissa il programma della conferenza.",
+    "at3h":"Dopo il workshop",
+    "at3p":"Le slide dei relatori vengono pubblicate su questa pagina.",
+    "cta":"Link per l’iscrizione da inserire",
+    "tbc-c":"da confermare","tbc-c2":"da confermare",
+    "tbc-title":"titolo da confermare","tbc-sp":"relatori da confermare","tbc-sp2":"relatori da confermare",
+    "tbc-af":"affiliazione da confermare","tbc-n":"nome da inserire","tbc-n2":"nomi da inserire",
+    "fo1":"COSMI è un workshop di <a href=\"https://itasec.it/\">ITASEC 2027</a>, la conferenza italiana sulla cybersecurity, organizzata dal CINI Cybersecurity National Lab con la Fondazione SERICS.",
+    "fo2":"Contatti: <a href=\"mailto:micaela.demichela@polito.it\">micaela.demichela@polito.it</a>",
+    "fo3":"Politecnico di Torino · Università di Bologna · Università Campus Bio-Medico di Roma"
+  };
+  var EN = {}, nodes = document.querySelectorAll("[data-i18n]");
+  nodes.forEach(function(n){ EN[n.getAttribute("data-i18n")] = n.innerHTML; });
+
+  function apply(lang){
+    var dict = (lang === "it") ? IT : EN;
+    nodes.forEach(function(n){
+      var k = n.getAttribute("data-i18n");
+      var v = (lang === "it") ? (IT[k] !== undefined ? IT[k] : EN[k]) : EN[k];
+      if (v !== undefined) n.innerHTML = v;
+    });
+    document.documentElement.lang = lang;
+    document.querySelectorAll(".langs button").forEach(function(b){
+      b.setAttribute("aria-pressed", String(b.getAttribute("data-lang") === lang));
+    });
+    try { localStorage.setItem("cosmi-lang", lang); } catch (e) {}
+  }
+
+  var fromUrl = new URLSearchParams(location.search).get("lang");
+  var saved = null;
+  try { saved = localStorage.getItem("cosmi-lang"); } catch (e) {}
+  apply((fromUrl === "it" || fromUrl === "en") ? fromUrl : (saved === "it" ? "it" : "en"));
+
+  document.querySelectorAll(".langs button").forEach(function(b){
+    b.addEventListener("click", function(){ apply(b.getAttribute("data-lang")); });
+  });
+})();
+</script>
+</body>
+</html>
